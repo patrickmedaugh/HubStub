@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+
+  # caches_page :new, :create
   def new
     if params[:forward_to]
       session[:forward_to] = params[:forward_to]
