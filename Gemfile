@@ -1,4 +1,7 @@
 source 'https://rubygems.org'
+gem 'selenium-webdriver'
+gem 'populator'
+gem 'poltergeist'
 gem "paperclip", "~> 4.2"
 gem 'faker'
 gem 'rails', '4.2.0'
