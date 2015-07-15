@@ -18,19 +18,21 @@
     <th></th>
   </thead>
   <tbody>
-    <% @events.each do |event| %>
-      <tr>
-        <td><%= image_tag event.image.img.url(:event_manage_list), class: "manage-item-img" %></td>
-        <td><%= event.title %></td>
-        <td><%= event.description %></td>
-        <td><%= event.venue.name %> <br> <%=event.venue.location %></td>
-        <td><%= event.formatted_date %></td>
-        <td><%= event.formatted_time %></td>
-        <td><%= event.category.name %></td>
-        <td><%= event.approved ? "approved" : "pending"%></td>
-        <td><%= link_to "Edit", edit_admin_event_path(event), class: "btn btn-default" %></td>
-        <td><%= link_to "Delete", admin_event_path(event), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default"  %></td>
-      </tr>
-    <% end %>
+    <% cache @events do %>
+      <% @events.each do |event| %>
+        <tr>
+          <td><%= image_tag event.image.img.url(:event_manage_list), class: "manage-item-img" %></td>
+          <td><%= event.title %></td>
+          <td><%= event.description %></td>
+          <td><%= event.venue.name %> <br> <%=event.venue.location %></td>
+          <td><%= event.formatted_date %></td>
+          <td><%= event.formatted_time %></td>
+          <td><%= event.category.name %></td>
+          <td><%= event.approved ? "approved" : "pending"%></td>
+          <td><%= link_to "Edit", edit_admin_event_path(event), class: "btn btn-default" %></td>
+          <td><%= link_to "Delete", admin_event_path(event), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default"  %></td>
+        </tr>
+       <% end %>
+     <% end %>
   </tbody>
 </table>

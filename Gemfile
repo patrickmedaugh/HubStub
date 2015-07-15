@@ -1,7 +1,4 @@
 source 'https://rubygems.org'
-gem 'selenium-webdriver'
-gem 'populator'
-gem 'poltergeist'
 gem "paperclip", "~> 4.2"
 gem 'faker'
 gem 'rails', '4.2.0'
@@ -15,25 +12,31 @@ gem 'twitter-bootstrap-rails'
 gem 'bootstrap_form', '~> 2.2.0'
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
-gem 'newrelic_rpm'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
+# gem 'openssl'
 gem 'google_timezone'
 gem 'geokit'
-
+gem 'newrelic_rpm'
+gem 'selenium-webdriver'
+gem 'capybara'
+gem 'populator'
+gem 'poltergeist'
+gem 'will_paginate',           '3.0.7'
+gem 'bootstrap-will_paginate', '0.0.10'
 
 group :development, :test do
   gem 'byebug', '~> 3.5.0'
   gem 'web-console', '~> 2.0'
   gem 'spring'
   gem 'rspec-rails'
-  gem 'capybara'
   gem 'launchy'
   gem 'pry'
   gem 'factory_girl_rails', '~> 4.5.0'
   gem 'database_cleaner', '~> 1.4.0'
+  gem "bullet"
 end
 group :production do
   gem 'rails_12factor', '0.0.2'

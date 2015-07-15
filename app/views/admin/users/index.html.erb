@@ -12,21 +12,23 @@
     <th></th><th></th>
   </thead>
   <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= user.full_name %></td>
-        <td><%= user.email %></td>
-        <td><%= user.display_name %> </td>
-        <td>
-          <%= link_to "Store", seller_store_path(user.slug), class: "btn btn-default" %>
-        </td>
-        <td><%= link_to "Listings", admin_user_path(user), class: "btn btn-default" %></td>
-        <% if user.suspended %>
-          <td><%= link_to "Unfreeze", admin_unsuspend_user_path(user), class: "btn btn-default"%></td>
-        <% else %>
-          <td><%= link_to "Freeze", admin_suspend_user_path(user), class: "btn btn-default"%></td>
-        <% end %>
-      </tr>
+    <% cache @users do %>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.full_name %></td>
+          <td><%= user.email %></td>
+          <td><%= user.display_name %> </td>
+          <td>
+            <%= link_to "Store", seller_store_path(user.slug), class: "btn btn-default" %>
+          </td>
+          <td><%= link_to "Listings", admin_user_path(user), class: "btn btn-default" %></td>
+          <% if user.suspended %>
+            <td><%= link_to "Unfreeze", admin_unsuspend_user_path(user), class: "btn btn-default"%></td>
+          <% else %>
+            <td><%= link_to "Freeze", admin_suspend_user_path(user), class: "btn btn-default"%></td>
+          <% end %>
+        </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>

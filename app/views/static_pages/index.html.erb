@@ -1,7 +1,6 @@
 <div class="row site-title">
   <h1 id="site-title">HUBSTUB</h1>
 </div>
-
 <div class="row home-body-top clearfix">
   <div class="col-lg-5 col-lg-offset-1">
     <div id="upcoming-events" class="home-page-inner left">
@@ -11,6 +10,7 @@
           <th class="feature-event-date-head">Date</th>
           <th colspan=2 class="feature-event">Event</th>
         </tr>
+        <% cache do%>
         <% @next_events.each do |event| %>
         <tr class="feature-event-row">
           <td>
@@ -30,6 +30,7 @@
           </a></td>
         </tr>
         <% end %>
+      <% end %>
       </table>
     </div>
   </div>
@@ -43,8 +44,9 @@
           <th class="feature-event-date-head">Date</th>
           <th colspan=2 class="feature-event">Event</th>
         </tr>
-        <% @just_added.each do |event| %>
-        <tr class="feature-event-row">
+        <% cache do%>
+          <% @just_added.each do |event| %>
+          <tr class="feature-event-row">
           <td>
             <div class="feature-event-date">
               <p class="feature-month"><%= event.month %></p>
@@ -61,6 +63,7 @@
               <p>Available</p>
           </td>
         </tr>
+          <% end %>
         <% end %>
       </table>
     </div>

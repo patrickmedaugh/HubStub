@@ -1,14 +1,15 @@
-# require 'populator'
 
-desc "Populate StubHub"
-task  :populate => :environment do
+require "populator"
+
+desc "Simulate load against HubStub application"
+task :populate => :environment do
   @venues = Venue.all
   @categories = Category.all
   @images = Image.all
-  Event.populate(30000) do |event|
+  Event.populate(30_000) do |event|
     event.title = Faker::Company.name
     event.description = Faker::Company.catch_phrase
-    event.date = 30.days.from_now
+    event.date = 22.days.from_now
     event.start_time = "2000-01-01 22:30:00"
     event.approved = true
     event.image_id = @images.sample.id
@@ -18,16 +19,18 @@ task  :populate => :environment do
 
   @events = Event.all
 
-  User.populate(200000) do |user|
-    user.full_name        = Faker::Name.name
-    user.email            = Faker::Internet.email
-    user.password_digest  = "password"
-    user.street_1         = Faker::Address.street_address
-    user.street_2         = Faker::Address.secondary_address
-    user.city             = Faker::Address.city
-    user.state            = Faker::Address.state
-    user.zipcode          = 80123
-    user.display_name     = Faker::Internet.user_name
+  User.populate(200_000) do |user|
+    user.full_name = Faker::Name.name
+    user.slug = user.full_name.gsub(" ", "-")
+    user.email = Faker::Internet.email
+    user.password_digest = "password"
+    user.street_1 = Faker::Address.street_address
+    user.street_2 = Faker::Address.secondary_address
+    user.city = Faker::Address.city
+    user.state = Faker::Address.state
+    user.zipcode = 39247
+    user.display_name = Faker::Internet.user_name
+
 
     Item.populate(3) do |item|
       item.unit_price = rand(1000..10000)
