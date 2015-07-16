@@ -52,4 +52,11 @@ class Event < ActiveRecord::Base
   def venue_location
     venue.location
   end
+
+  def self.find_active
+    count = Event.count
+    rands = []
+    20.times { rands << rand(1..count) }
+    Event.where(id: rands).active.sample
+  end
 end

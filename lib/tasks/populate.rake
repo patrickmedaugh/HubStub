@@ -1,4 +1,3 @@
-
 require "populator"
 
 desc "Simulate load against HubStub application"

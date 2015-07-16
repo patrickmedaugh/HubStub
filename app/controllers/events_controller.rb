@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+
+
   def index
     @items = Item.active.not_in_cart(session[:cart]).paginate(:page => params[:page], :per_page => 10)
     @category = Category.find_by(name: params[:category])
@@ -10,18 +12,16 @@ class EventsController < ApplicationController
   end
 
   def show
-    #add include items
     @event = Event.find_by(id: params[:id])
     @items = @event.items.active.not_in_cart(session[:cart])
   end
 
   def random
-    if Event.count > 0
-      offset = rand(Event.active.count)
-      event = Event.active.offset(offset).first
-      redirect_to event
-    else
-      redirect_to root_path
-    end
+    event = Event.find_active
+    redirect_to event
+  end
+
+  def clear_cache
+    Rails.cache.clear
   end
 end

@@ -46,7 +46,7 @@
         </tr>
       </thead>
       <tbody>
-          <% cache @items do %>
+          <% cache "event_items" do %>
             <% @items.each do |item| %>
               <tr>
                 <td class="vert-align"><%= link_to(item.seller, seller_store_path(item.seller)) %></td>

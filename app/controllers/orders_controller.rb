@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+
   def show
     @order = Order.find(params[:id])
     @user = current_user
@@ -28,6 +29,10 @@ class OrdersController < ApplicationController
       flash[:warning] = "Something went wrong. Please log in and try again"
       redirect_to root_path
     end
+  end
+
+  def clear_cache
+    Rails.cache.clear
   end
 
   private
